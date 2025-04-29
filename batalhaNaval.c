@@ -1,8 +1,6 @@
 #include <stdio.h>
 
 int main() {
-    int navio1 [3] = {3, 3, 3}; //Navio horizontal de tamanho 3
-    int navio2 [3] = {3, 3, 3}; //Navio vertical de tamanho 3
     int tabuleiro [10][10] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
                               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -15,13 +13,38 @@ int main() {
                               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
     //posicionando o navio horizontal ao tabuleiro
-    for (int a = 2, b = 0; a < 5; a++, b++){ 
-        tabuleiro[8][a] = navio1[b];
+    for (int i = 2, j = 0; i < 5; i++, j++){ 
+        tabuleiro[8][i] = tabuleiro[8][i] + 3;
+        //validando se as coordenadas dos navios estão em uma posição válida
+        if (i >= 10 && j >= 10 || tabuleiro[8][i] > 3){
+            printf("Um ou mais navios estão em uma posição inválida.\n");
+        }
     }
     //posicionando o navio vertical ao tabuleiro
-    for (int c = 3, d = 0; c < 6; c++, d++){
-        tabuleiro[c][6] = navio2[d]; 
+    for (int i = 3, j = 0; i < 6; i++, j++){
+        tabuleiro[i][6] = tabuleiro[i][6] + 3;
+        //validando se as coordenadas dos navios estão em uma posição válida
+        if (i >= 10 && j >= 10 || tabuleiro[i][6] > 3){
+            printf("Um ou mais navios estão em uma posição inválida.\n");
+        }
     }
+    //posicionando o primeiro navio diagonal no tabuleiro
+    for (int i = 1, j = 7, k = 0; i < 4; i++, j++, k++){
+        tabuleiro[i][j] = tabuleiro[i][j] + 3;
+        //validando se as coordenadas dos navios estão em uma posição válida
+        if (i >= 10 && j >= 10 || tabuleiro[i][j] > 3){
+            printf("Um ou mais navios estão em uma posição inválida.\n");
+        }
+    }
+    //posicionando o segundo navio diagonal no tabuleiro
+    for (int i = 6, j = 0, k = 0; i > 3; i--, j++, k++){
+        tabuleiro[i][j] = tabuleiro[i][j] + 3;
+        //validando se as coordenadas dos navios estão em uma posição válida
+        if (i >= 10 && j >= 10 || tabuleiro[i][j] > 3){
+            printf("Um ou mais navios estão em uma posição inválida.");
+        }
+    }
+
     //printando o tabuleiro do jogo com os navios já posicionados
     printf("-Tabuleiro de batalha naval- \n");
     printf ("    A B C D E F G H I J \n");
